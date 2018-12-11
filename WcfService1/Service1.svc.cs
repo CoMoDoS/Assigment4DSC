@@ -35,6 +35,8 @@ namespace WcfService1
             if (userName == "testUser" && password == "testPassword")
             {
                 // Authentication Successful
+                DBConnect dbc = new DBConnect();
+                dbc.Delete();
                 return "mata suge";
             }
             else

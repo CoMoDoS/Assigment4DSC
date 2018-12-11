@@ -17,3 +17,11 @@ F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\Microsoft.Applicatio
 F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\obj\Debug\WcfService1.csprojResolveAssemblyReference.cache
 F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\obj\Debug\WcfService1.dll
 F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\obj\Debug\WcfService1.pdb
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\EntityFramework.dll
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\EntityFramework.SqlServer.dll
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\MySql.Data.dll
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\MySql.Data.Entity.EF6.dll
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\EntityFramework.xml
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\EntityFramework.SqlServer.xml
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\MySql.Data.xml
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\MySql.Data.Entity.EF6.xml
