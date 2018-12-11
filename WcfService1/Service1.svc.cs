@@ -5,6 +5,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using WcfService1.DBO;
+using WcfService1.models;
 
 namespace WcfService1
 {
@@ -35,8 +37,13 @@ namespace WcfService1
             if (userName == "testUser" && password == "testPassword")
             {
                 // Authentication Successful
-                DBConnect dbc = new DBConnect();
-                dbc.Delete();
+                UserDBO dbc = new UserDBO();
+                User user = new User();
+                user.name = "Ionut";
+                user.admin = "i@i.i";
+                user.password = "ion";
+                user.admin = "N";
+                dbc.Insert(user);
                 return "mata suge";
             }
             else
