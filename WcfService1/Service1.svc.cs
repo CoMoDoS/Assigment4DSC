@@ -14,43 +14,56 @@ namespace WcfService1
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
-        public string GetData(int value)
+        public List<User> GetAllUsers()
         {
-            return string.Format("You entered: {0}", value);
+            UserDBO dbc = new UserDBO();
+            List<User> list = dbc.SelectAll();
+
+            return list;
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
-        }
-
-        public string GetToken(string userName, string password)
+        public List<User> GetToken(string userName, string password)
         {
             if (userName == "testUser" && password == "testPassword")
             {
                 // Authentication Successful
                 UserDBO dbc = new UserDBO();
                 User user = new User();
-                user.name = "Ionut";
-                user.admin = "i@i.i";
-                user.password = "ion";
-                user.admin = "N";
-                dbc.Insert(user);
-                return "mata suge";
+               //dbc.Delete(6);
+
+                //user.name = "Ionut";
+                //user.email = "a@i.i";
+                //user.password = "ion";
+                //user.admin = "N";
+                //int w = dbc.Insert(user);
+                //Console.WriteLine(w);
+
+                //User a = new User();
+                //a = dbc.GetUserById(2);
+                //Console.WriteLine(a.ToString() + a.email) ;
+
+                //int q = dbc.Update(a, 7);
+                //Console.WriteLine(q);
+
+                List<User> list = dbc.SelectAll();
+
+
+
+
+                return list;
             }
             else
             {
                 // Authentication Failed
-                return "tot   pula";
+                return null;
             }
+        }
+
+        public int Insert(User u)
+        {
+            UserDBO dbc = new UserDBO();
+            int w = dbc.Insert(u); 
+            return w;
         }
     }
 }

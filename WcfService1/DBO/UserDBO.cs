@@ -82,13 +82,15 @@ namespace WcfService1.DBO
         }
 
         //Insert statement
-        public void Insert(User user)
+        public int Insert(User user)
         {
             string query = "INSERT INTO user (name, email, password, admin) VALUES(@name,@email,@pass,@admin)";
-
+            string query2 = "select last_insert_id();";
             //open connection
-            if (this.OpenConnection() == true)
+            try
             {
+                this.OpenConnection();
+                
                 //create command and assign the query and connection from the constructor
                 MySqlCommand cmd = new MySqlCommand(query, connection);
 
@@ -102,72 +104,107 @@ namespace WcfService1.DBO
                 //Execute command
                 cmd.ExecuteNonQuery();
 
+                MySqlCommand cmd2 = new MySqlCommand(query2, connection);
+                int id = Convert.ToInt32(cmd2.ExecuteScalar());
+
                 //close connection
                 this.CloseConnection();
+                return id;
+                
+            }catch(Exception e)
+            {
+                throw e;
             }
+            
         }
 
         //Update statement
-        public void Update()
+        public int Update(User user, int id)
         {
-            string query = "UPDATE tableinfo SET name='Joe', age='22' WHERE name='John Smith'";
+            string query = "UPDATE user SET name=@name, email=@email, password=@pass, admin=@admin  WHERE iduser=@id";
 
             //Open connection
-            if (this.OpenConnection() == true)
+           try
             {
+                this.OpenConnection();
                 //create mysql command
                 MySqlCommand cmd = new MySqlCommand();
                 //Assign the query using CommandText
                 cmd.CommandText = query;
                 //Assign the connection using Connection
                 cmd.Connection = connection;
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("name", user.name);
+                cmd.Parameters.AddWithValue("email", user.email);
+                cmd.Parameters.AddWithValue("pass", user.password);
+                cmd.Parameters.AddWithValue("admin", user.admin);
+                cmd.Parameters.AddWithValue("id", user.id);
 
                 //Execute query
                 cmd.ExecuteNonQuery();
 
                 //close connection
                 this.CloseConnection();
+                return id;
+            }catch(Exception e)
+            {
+                throw e;
             }
         }
 
         //Delete statement
-        public void Delete()
+        public int Delete(int id)
         {
-            string query = "DELETE FROM tableinfo WHERE name='John Smith'";
+            string query = @"DELETE FROM user WHERE iduser = @id ";
 
-            if (this.OpenConnection() == true)
+            try
             {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                this.OpenConnection();
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = query;
+               
+                cmd.Parameters.AddWithValue("id",id);
+                
                 cmd.ExecuteNonQuery();
                 this.CloseConnection();
+                return id;
             }
+            catch(Exception e)
+            {
+                throw e;
+            }
+            
         }
 
         //Select statement
-        public List<string>[] Select()
+        public List<User> SelectAll()
         {
-            string query = "SELECT * FROM tableinfo";
+            string query = "SELECT * FROM user";
 
             //Create a list to store the result
-            List<string>[] list = new List<string>[3];
-            list[0] = new List<string>();
-            list[1] = new List<string>();
-            list[2] = new List<string>();
+            List<User> users = new List<User>();
 
             //Open connection
-            if (this.OpenConnection() == true)
+            try
             {
+
+                this.OpenConnection();
                 //Create Command
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 //Create a data reader and Execute the command
                 MySqlDataReader dataReader = cmd.ExecuteReader();
-
+                
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    list[0].Add(dataReader["id"] + "");
-                    list[1].Add(dataReader["name"] + "");
-                    list[2].Add(dataReader["age"] + "");
+                    User user = new User();
+                    user.id = Convert.ToInt32(dataReader["iduser"].ToString());
+                    user.name = dataReader["name"].ToString();
+                    user.email = dataReader["email"].ToString();
+                    user.password = dataReader["password"].ToString();
+                    user.admin = dataReader["admin"].ToString();
+                    users.Add(user);
                 }
 
                 //close Data Reader
@@ -177,38 +214,44 @@ namespace WcfService1.DBO
                 this.CloseConnection();
 
                 //return list to be displayed
-                return list;
-            }
-            else
+                return users;
+            }catch( Exception e)
             {
-                return list;
+                throw e;
             }
         }
 
-        //Count statement
-        public int Count()
+        public User GetUserById(int id)
         {
-            string query = "SELECT Count(*) FROM tableinfo";
-            int Count = -1;
+            string query = "SELECT * FROM user WHERE iduser=@id";
 
-            //Open Connection
-            if (this.OpenConnection() == true)
+            //Create a list to store the result
+            User user = new User();
+
+            //Open connection
+          try
             {
-                //Create Mysql Command
+                this.OpenConnection();
+                //Create Command
                 MySqlCommand cmd = new MySqlCommand(query, connection);
-
-                //ExecuteScalar will return one value
-                Count = int.Parse(cmd.ExecuteScalar() + "");
-
-                //close Connection
+                //Create a data reader and Execute the command
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("id", id);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                dataReader.Read();
+                user.id = Convert.ToInt32(dataReader["iduser"].ToString());
+                user.name = dataReader["name"].ToString();
+                user.email = dataReader["email"].ToString();
+                user.password = dataReader["password"].ToString();
+                user.admin = dataReader["admin"].ToString();
                 this.CloseConnection();
+                return user;
 
-                return Count;
-            }
-            else
+            }catch (Exception e)
             {
-                return Count;
+                throw e;
             }
         }
+       
     }
 }

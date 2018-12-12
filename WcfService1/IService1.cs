@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using WcfService1.models;
 
 namespace WcfService1
 {
@@ -15,13 +16,15 @@ namespace WcfService1
     public interface IService1
     {
 
-        [OperationContract]
-        string GetData(int value);
-
-        [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        
         [OperationContract(Action = "/GetToken")]
-        string GetToken(string userName, string password);
+        List<User> GetToken(string userName, string password);
+       
+        //CompositeType GetDataUsingDataContract(CompositeType composite);
+        [OperationContract(Action = "/GetAllUsers")]
+        List<User> GetAllUsers();
+        [OperationContract(Action = "/InsertUser")]
+        int Insert(User u);
 
         // TODO: Add your service operations here
     }
