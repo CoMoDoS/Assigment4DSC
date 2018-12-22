@@ -15,7 +15,7 @@ namespace WcfService1.models
         public string destinationCity { get; set; }
 
         public string description { get; set; }
-        public bool tracking { get; set; }
+        public string tracking { get; set; }
         public string route { get; set; }
     }
 }

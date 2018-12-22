@@ -25,3 +25,15 @@ F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\EntityFramework.xml
 F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\EntityFramework.SqlServer.xml
 F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\MySql.Data.xml
 F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\MySql.Data.Entity.EF6.xml
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\Newtonsoft.Json.dll
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\System.Net.Http.Formatting.dll
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\System.Web.Cors.dll
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\System.Web.Http.Cors.dll
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\System.Web.Http.dll
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\Newtonsoft.Json.xml
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\System.Net.Http.Formatting.xml
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\System.Web.Http.xml
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\System.Web.Http.Cors.xml
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\Microsoft.Owin.dll
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\Owin.dll
+F:\Faculta\An4Sem1\SD\Assig4NET\WcfService1\WcfService1\bin\Microsoft.Owin.xml

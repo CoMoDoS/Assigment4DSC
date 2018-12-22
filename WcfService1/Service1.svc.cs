@@ -59,11 +59,40 @@ namespace WcfService1
             }
         }
 
-        public int Insert(User u)
+        public int InsertPackage(Package u)
+        {
+            PackageDBO dbo = new PackageDBO();
+            int id = dbo.Insert(u);
+            return id;
+        }
+
+        public int InsertUser(User u)
         {
             UserDBO dbc = new UserDBO();
             int w = dbc.Insert(u); 
             return w;
         }
+
+        public List<Package> GetAllPackages()
+        {
+            PackageDBO dbo = new PackageDBO();
+            List<Package> p = dbo.SelectAll();
+            return p;
+
+        }
+
+        public List<Package> GetPackagesByIdUser(int id)
+        {
+            PackageDBO dbo = new PackageDBO();
+            List<Package> p = dbo.GetPackagesByIduser(id);
+            return p;
+        }
+
+        public void GetOptions()
+        {
+
+        }
+
+
     }
 }

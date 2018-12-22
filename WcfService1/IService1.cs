@@ -5,12 +5,15 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Web.Http;
+using System.Web.Http.Cors;
 using WcfService1.models;
 
 namespace WcfService1
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
+
     // [XmlSerializerFormat(Style = OperationFormatStyle.Rpc, Use = OperationFormatUse.Literal)]
     [XmlSerializerFormat(Style = OperationFormatStyle.Document, Use = OperationFormatUse.Literal)]
     public interface IService1
@@ -18,38 +21,32 @@ namespace WcfService1
 
         
         [OperationContract(Action = "/GetToken")]
+
         List<User> GetToken(string userName, string password);
-       
+        
         //CompositeType GetDataUsingDataContract(CompositeType composite);
         [OperationContract(Action = "/GetAllUsers")]
         List<User> GetAllUsers();
+        
         [OperationContract(Action = "/InsertUser")]
-        int Insert(User u);
+        int InsertUser(User u);
+        
+        [OperationContract(Action = "/InsertPackage")]
+        int InsertPackage(Package u);
+        
+        [OperationContract(Action = "/GetAllPackages")]
+        List<Package> GetAllPackages();
+        
+        [OperationContract(Action = "/GetPackagesByIdUser")]
+        //[WebInvoke(Method = "POST", UriTemplate = "*")]
+        [EnableCors(origins: "", headers: "", methods: "*")]
+        List<Package> GetPackagesByIdUser(int id);
 
-        // TODO: Add your service operations here
+        [OperationContract]
+        [WebInvoke(Method = "OPTIONS", UriTemplate = "*")]
+        void GetOptions();
     }
 
 
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    [DataContract]
-
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
-    }
+   
 }
